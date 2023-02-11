@@ -490,3 +490,51 @@ const quotes = [
     author: "Zig Ziglar",
   },
 ];
+
+//-- 1. create a parent container
+//-- 2. create a child container
+//-- 3. create a 3 granchildren conatainer
+//      3.a h1
+//      3.b paragrath
+//      3.c button
+//        - add event listener to button
+//        - onclick i want to change the inner text to the properties of an object in the array
+
+// let {author, quote} = array[Math.floor(Math.random()* array.length)];
+
+//-- mvp function start--//
+
+//-- refrence granparent --//
+let grandParentElem = document.querySelector("body");
+console.log(grandParentElem);
+//-- 1. create a parent container
+let parentElem = document.createElement("div");
+parentElem.innerText = "parentElem";
+
+//-- 2. create a child container
+let childOfParentElem = document.createElement("div");
+//-- 3. create a 3 granchildren conatainer
+
+//      3.a h1
+let h2Elem = document.createElement("h2");
+h2Elem.innerText = "h2 inner text";
+//      3.b paragrath
+let paraElem = document.createElement("p");
+paraElem.innerText = "paraElem";
+//      3.c button
+let buttonElem = document.createElement("button");
+buttonElem.innerText = "Another Auote";
+buttonElem.addEventListener("click", () => {
+  let { author, quote } = quotes[Math.floor(Math.random() * quotes.length)];
+  console.log(author, quote);
+  h2Elem.innerText = quote;
+  paraElem.innerText = author;
+});
+//        - add event listener to button
+//        - onclick i want to change the inner text to the properties of an object in the array
+
+childOfParentElem.append(h2Elem, paraElem, buttonElem);
+//
+// let {author, quote} = array[Math.floor(Math.random()* array.length)];
+parentElem.append(childOfParentElem);
+grandParentElem.append(parentElem);
